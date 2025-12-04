@@ -3,6 +3,7 @@ import secrets
 from hashlib import sha256
 from tcp_json import send_json
 from tcp_json import receive_json
+from time import sleep
 
 HOST = "0.0.0.0"
 PORT = 8080
@@ -107,6 +108,7 @@ def main():
         s.bind((HOST, PORT))
         s.listen()
         print("[BOB] Waiting for Alice to arrive...")
+        sleep(2)
         conn, addr = s.accept()
         print("[BOB] Alice has arrived.")
         message = {

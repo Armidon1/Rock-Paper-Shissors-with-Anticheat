@@ -1,10 +1,12 @@
 import secrets
 import socket
 from hashlib import sha256
+
+from time import sleep
 from tcp_json import send_json
 from tcp_json import receive_json
 
-HOST = '0.0.0.0'
+HOST = 'bob'
 PORT = 8080
 
 my_move = ""
@@ -92,7 +94,9 @@ def main():
 
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as conn:
         print("[Alice] I'm going to meet Bob...")
+        sleep(2)
         conn.connect((HOST, PORT))
+        conn.settimeout(5.0)
         print("[Alice] Arrivede to Bob.")
 
         while True:
